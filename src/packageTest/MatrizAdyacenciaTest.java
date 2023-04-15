@@ -48,4 +48,27 @@ public class MatrizAdyacenciaTest {
     	
     	assertTrue(matriz.getCantidadElementos() == 3);
     }
+
+    
+    @Test
+    public void agregarElementoColumnaNegativaTest() {
+        matriz = new MatrizAdyacencia(2);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            matriz.agregarElemento(0, -1);
+        });
+    }
+    
+    @Test
+    public void agregarElementoFueraRangoTest() {
+        matriz = new MatrizAdyacencia(2);
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            matriz.agregarElemento(0,2 );
+        });
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            matriz.agregarElemento(2, 0);
+        });
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            matriz.agregarElemento(2, 2);
+        });
+    }
 }
