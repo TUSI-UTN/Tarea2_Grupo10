@@ -48,4 +48,34 @@ public class MatrizAdyacenciaTest {
     	
     	assertTrue(matriz.getCantidadElementos() == 3);
     }
+    
+    @Test
+    public void existenTodosLosElementoTest() {
+    	matriz = new MatrizAdyacencia(3);
+    	matriz.agregarElemento(0, 1); 
+    	matriz.agregarElemento(1, 2);
+    	matriz.agregarElemento(2, 0);
+    	  
+        assertTrue(matriz.existeElemento(0, 1),"Error en la posicion {0 ; 1} de la matriz."); 
+        assertTrue(matriz.existeElemento(1, 0),"Error en la posicion {1 ; 0} de la matriz.");
+        assertTrue(matriz.existeElemento(1, 2),"Error en la posicion {1 ; 2} de la matriz."); 
+        assertTrue(matriz.existeElemento(2, 1),"Error en la posicion {2 ; 1} de la matriz.");
+        assertTrue(matriz.existeElemento(0, 2),"Error en la posicion {0 ; 2} de la matriz."); 
+        assertTrue(matriz.existeElemento(2, 0),"Error en la posicion {2 ; 0} de la matriz.");
+    }
+
+
+    @Test
+    public void agregarElementoFilaNegativaTest() {
+    	//Excepcion esperada  "java.lang.ArrayIndexOutOfBoundsException: -1"
+    	
+    	assertThrows(ArrayIndexOutOfBoundsException.class,
+    					()->{
+	    						matriz = new MatrizAdyacencia(2);
+								matriz.agregarElemento(-1, 0); 
+							;} , 
+    						"Se produjo una Excepcion distinta a la esperada  \"java.lang.ArrayIndexOutOfBoundsException: -1\"");
+    	
+    }
+    
 }
